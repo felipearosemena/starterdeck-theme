@@ -1,0 +1,37 @@
+{# 
+
+  Image Macro 
+  
+  @param image ( object ) . ACF Image Object
+  @param size ( string )  . Registered post thumbnail size name
+
+  You can use the utility function lms_get_image_object() to create a ACF-like image object that will work with this macro. Useful when working with 3rd party plugins.
+  
+#}
+{% macro img( image, size ) %}
+
+    <img 
+        class="js-img-fade {{ class }}"
+        width="{{ image.sizes[size ~ '-width'] }}"
+        height="{{ image.sizes[size ~ '-height'] }}"
+        src="{{ image.sizes[size] }}" 
+        alt="{{ image.alt }}" 
+        title="{{ image.title }}" >
+    
+
+{% endmacro %}
+
+{# Site Branding #}
+{% macro logo( context, class ) %}
+
+    <a class="site-branding {{ class }} " href="{{ context.site.url }}">
+    
+    {% if context.site_settings.site_logo %}
+        <img class="site-branding__logo" src="{{ context.site_settings.site_logo.sizes.brand}}" alt="{{ context.site_settings.site_logo.alt}}" title="{{ context.site_settings.site_logo.title}}">
+    {% else %}
+        {{ bloginfo('name')}}
+    {% endif %}
+ 
+  </a>
+    
+{% endmacro %}

@@ -1,0 +1,42 @@
+{% extends "layouts/layout-sidebar.twig" %}
+
+{% block content %}
+
+    <header>
+
+        <h1>{{page_title}}</h1>
+    
+        {% if categories_list %}
+
+            <ul class="categories nav nav--inline">
+                <li><strong>Categories: </strong></li>
+                {{ categories_list }}
+            </ul>
+
+        {% endif %}
+    
+    </header>
+  
+  
+    {% for post in posts %}
+
+        <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+            
+            <header class="entry-header">
+                <h2 class="entry-title">
+                    <a href="{{post.link}}">{{ post.title }}</a>
+                </h2>
+                <time>{{ post.display_date }}</time>
+            </header>
+
+            <p class="entry-summary">
+                {{ post.post_excerpt }}
+            </p>
+
+        </article>
+
+    {% endfor %}
+  
+    {{ include('includes/pagination.twig') }}
+
+{% endblock %}

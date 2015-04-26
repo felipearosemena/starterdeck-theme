@@ -1,0 +1,7 @@
+{% if site_settings.social_accounts %}
+    <ul class="nav nav--social nav--inline">
+        {% for account in site_settings.social_accounts %}
+            <li><a href="{{ account.account_url }}" target="_blank" class="icon-{{ account.account_type}}" ></a></li>
+        {% endfor %}
+    </ul>
+{% endif %}

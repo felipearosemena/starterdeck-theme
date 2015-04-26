@@ -1,0 +1,55 @@
+{% import 'macros.twig' as macros %}
+
+{% include('includes/head.twig') %}
+
+    <body class="{{ body_class }}" >
+  
+        {% if site_settings.site_nav_style %}
+            {% include("includes/header-#{site_settings.site_nav_style}.twig") %}
+        {% else %}
+            {% include("includes/header-simple.twig") %}
+        {% endif %}
+  
+
+        <!--begin page content -->
+        <section class="page-wrap page-wrap--nav-{{site_settings.site_nav_position}}" role="document">
+            
+            {# Common Elements accross layouts #}
+            {% include('includes/stub.twig') %}
+
+            {% block masthead %}{% endblock %}
+
+            {% block map %}{% endblock %}
+            {# Common Elements accross layouts #}
+
+            <div id="page-content" class="page-content sidebar-layout">
+                <div class="container">
+                    <div class="grid">
+
+                        <main class="grid__item three-quarters lg-one-whole float--right">
+                            {% block content %}{% endblock %}
+                        </main>
+                      
+                        <aside class="sidebar grid__item one-quarter lg-one-whole">
+                        
+                            {% block sidebar %}
+                            {% include('includes/sidebar.twig') %}
+                            {% endblock %}
+                        
+                        </aside>
+
+                    </div>
+                </div>
+            </div>
+
+        </section><!-- /.wrap -->
+
+        {% block bottom %}{% endblock %}
+          
+        {% include('includes/footer.twig') %}
+
+        {{ wp_footer }}
+
+    </body>
+
+</html>

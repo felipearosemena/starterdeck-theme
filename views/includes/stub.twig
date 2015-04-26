@@ -1,0 +1,28 @@
+{% if site_settings.site_nav_position == 'fixed' %}
+
+<div id="page-stub">
+
+    <!-- Quick function to offset the page content by an amount equal to the nav's height -->
+    <script>
+
+        (function(){
+
+            var stub       = document.getElementById('page-stub');
+            var siteHeader = document.getElementById('site-header');
+
+            if(stub && siteHeader ){
+
+                function setWrapHeight(){ 
+                    stub.style.paddingTop = siteHeader.offsetHeight + 'px';
+                }
+                
+                window.addEventListener('resize',setWrapHeight);setWrapHeight();
+            } 
+
+        })(window);
+
+    </script>
+
+</div>
+
+{% endif %}
