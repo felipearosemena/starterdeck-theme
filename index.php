@@ -1,13 +1,17 @@
-<?php 
+<?php
+/**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
 
-$context                    = Timber::get_context();
-$context['posts']           = Timber::get_posts();
-$context['page_title']      = get_the_title( get_option('page_for_posts', true) );
-$context['sidebar']         = Timber::get_widgets('sidebar-blog'); // slug of sidebar to be included in this template
-$context['categories_list'] = wp_list_categories('echo=0&title_li=');  
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+define('WP_USE_THEMES', true);
 
-//  Accepts same array as argument as paginate_links(). Must be array.
-$context['pagination']      = Timber::get_pagination(); 
-
-
-Timber::render('index.twig', $context);
+/** Loads the WordPress Environment and Template */
+require( dirname( __FILE__ ) . '/wp-blog-header.php' );

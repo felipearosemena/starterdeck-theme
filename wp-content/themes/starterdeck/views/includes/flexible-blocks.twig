@@ -1,0 +1,9 @@
+{% for section in post.get_field('blocks') %}
+  <div style="position: relative; border-top: 1px solid #e1e1e1;">
+    <div style="position: absolute; top: 0; left: 0; background: #313131; color: white; padding: .5em; font-size: .8em;">BLOCK: {{ section.acf_fc_layout|upper }}</div>
+
+    {% include 'includes/section-' ~ section.acf_fc_layout|replace({ '_' : '-' }) ~ '.twig' with {
+      section: section
+    } %}
+  </div>
+{% endfor %}

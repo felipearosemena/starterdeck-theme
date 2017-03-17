@@ -1,0 +1,363 @@
+/**
+ *
+ * Forms
+ *
+ * basic form styles
+ *
+ */
+
+form {
+  position: relative;
+  width: 100%;
+}
+
+label {
+  @include label;
+  display: block;
+  padding-bottom: $bsu;
+  cursor: pointer;
+}
+
+input, button {
+  line-height: $base-lh;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: none;
+  outline: none;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  height: $base-input-height;
+  width: 100%;
+  border: 2px solid $grey-lighter;
+  border-radius: $base-border-radius;
+  padding: $base-input-padding;
+  transition: border-color $transition-default;
+  background-color: white;
+  color: $body-color;
+
+  &:focus {
+    border-color: $body-color;
+    outline: none;
+  }
+}
+
+// Custom Styled Checkboxes & Radios
+
+input[type="checkbox"],
+input[type="radio"] {
+  @extend .sr-only;
+
+  + label {
+    position: relative;
+    padding-left: $bsu*1.15;
+    padding-bottom: $bsu/2;
+    line-height: $bsu;
+    display: inline-block;
+    letter-spacing: 0;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      box-sizing: border-box;
+      width: px-to-rem(22px);
+      height: px-to-rem(22px);
+      top: px-to-rem(3px);
+    }
+
+    &:after {
+      border: 2px solid $grey;
+    }
+  }
+}
+
+input[type="checkbox"] {
+
+  + label {
+    @include font-size($base-fs, $base-lh);
+    text-transform: none;
+    font-weight: 500;
+
+    &:before {
+      color: $color-primary;
+      font-family: 'icons';
+      text-align: center;
+      @include font-size(20px, 24px);
+    }
+  }
+
+  &:checked + label:before {
+    @extend .icon-check;
+  }
+}
+
+input[type="radio"] {
+  + label {
+    &:after,
+    &:before {
+      border-radius: 50%;
+    }
+
+    &:before {
+      transform: scale(0.5)
+    }
+  }
+
+  &:checked ~ label:before {
+    background: $color-primary;
+  }
+}
+
+textarea,
+select[multiple] {
+  height: auto;
+}
+
+select[multiple] {
+  padding: 0;
+
+  option {
+    padding: $base-input-padding;
+  }
+}
+
+.select-wrapper {
+  @include iconfont;
+  @extend .icon-caret-down;
+  position: relative;
+  width: 100%;
+
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1em;
+    font-size: px-to-rem($lead-fs);
+    pointer-events: none;
+  }
+}
+
+.form-control {
+  height: px-to-rem(50px);
+
+  @include mq-min($bp-md) {
+    height: px-to-rem(60px);
+  }
+}
+
+.form-control--lg {
+  border-radius: $base-border-radius*2;
+  height: px-to-rem(60px);
+
+  @include mq-min($bp-md) {
+    @include font-size($lead-fs, $lead-fs);
+    height: px-to-rem(70px);
+  }
+}
+
+.form-control--ghost {
+  color: white;
+  border-color: currentColor;
+  background-color: transparent;
+
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: white;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: white;
+  }
+  &::-ms-input-placeholder { /* IE 10+ */
+    color: white;
+  }
+  &::-moz-placeholder { /* Firefox 18- */
+    color: white;
+  }
+
+  &:focus {
+    border-color: $color-primary; 
+  }
+}
+
+select {
+  background: transparent;
+  cursor: pointer;
+  border-radius: $base-border-radius;
+
+  .appearance & {
+    appearance: none;
+    padding: .5em 2.5em .5em 1em;
+  }
+
+  + label {
+    font-size: 0;
+  }
+}
+
+.form-combo {
+
+  @include mq-min($bp-md) {
+    display: flex;
+  }
+
+  input {
+
+    @include mq-min($bp-md) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 0;
+    }
+  }
+
+  [type=submit] {
+    width: 100%;
+    margin-top: $bsu/2;
+
+    @include mq-min($bp-md) {
+      @include font-size($base-fs, $base-fs);
+      margin-top: 0;
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: auto;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
+
+[type=submit],
+input[type=button] {
+  @extend .btn;
+}
+
+/**
+ *
+ * Ninja Forms
+ * 
+ */
+
+
+.list-select-wrap .nf-field-element {
+  @extend .select-wrapper;
+}
+
+.list-select-wrap .nf-field-element {
+  width: 100%;
+}
+
+.nf-form-content {
+  @include clearfix;
+  margin-left: -$bsu/2;
+}
+
+.nf-field-container {
+  margin-bottom: $bsu;
+  position: relative;
+  width: 100%;
+  float: left;
+  padding-left: $bsu/2;
+
+  &.listcheckbox-container,
+  &.listradio-container {
+    ul {
+      @include list-plain;
+      margin-top: $bsu/4;
+    }
+  }
+
+  &.listradio-container {
+    li {
+      display: inline-block;
+      margin-right: $bsu/2;
+    }
+  }
+
+  nf-field:last-child & {
+    margin-bottom: 0;
+  }
+}
+
+.field-wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.submit-wrap {
+  margin-top: $bsu/2;
+}
+
+.nf-field-label {
+  order: 1;
+
+  label {
+    padding-bottom: $bsu/2;
+  }
+}
+
+.nf-field-description {
+  order: 2;
+  margin-top: -$bsu/2;
+
+  p {
+    margin-bottom: $bsu/4;
+    @include font-size(16px);
+  }
+}
+
+.nf-field-element {
+  order: 3;
+
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    background-color: $grey-lightest;
+
+    .bg--grey & {
+      background-color: white;
+    }
+  }
+}
+
+.nf-form-fields-required {
+  margin-bottom: $bsu;
+  font-weight: 500;
+}
+
+.ninja-forms-req-symbol {
+  color: $color-primary;
+}
+
+.nf-after-form-content {
+  min-height: px-to-rem(40px);
+}
+
+.nf-error-msg {
+  color: $color-primary;
+  text-align: right;
+  top: 100%;
+  right: 0;
+  font-weight: 500;
+  @include font-size(16px);
+
+  .nf-after-field & {
+    position: absolute;
+  }
+}
+
+.nf-error-field-errors {
+  text-align: center;
+  margin-top: $bsu;
+  font-weight: normal;
+  @include font-size($lead-fs);
+}
+
+.nf-form-hp {
+  display: none;
+}

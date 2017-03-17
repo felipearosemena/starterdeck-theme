@@ -1,0 +1,24 @@
+{
+  "name": "starterdeck",
+  "description": "Base WP Project",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Felipe Arosemena",
+      "email": "hello@felipearosemena.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SD\\": "wp-content/themes/starterdeck/lib/"
+    }
+  },
+  "config": {
+    "vendor-dir": "wp-content/themes/starterdeck/lib/vendor/"
+  },
+  "require": {
+    "php": ">=5.3",
+    "guzzlehttp/guzzle": "~6.0",
+    "raveren/kint": "~1.0"
+  }
+}

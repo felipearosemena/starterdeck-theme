@@ -1,0 +1,23 @@
+/**
+ *
+ * Section
+ *
+ * Common page section styling 
+ * 
+ */
+
+.section {}
+
+.section--padded {
+  padding-top: $bsu*2;
+  padding-bottom: $bsu*2;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  @include mq-min($bp-md) {
+    padding-top: $bsu*4;
+    padding-bottom: $bsu*4;
+  }
+}

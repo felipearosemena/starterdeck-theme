@@ -1,0 +1,30 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+
+  {% include 'includes/hero.twig' %}
+  {% include 'includes/cta-ticker.twig' %}
+  {% include 'includes/flexible-blocks.twig' %}
+
+  <div class="container">
+    
+    <a class="btn" data-scroll href="#hero">To Top</a>
+    <button class="btn" data-toggle-modal='#video-modal'>Open Video</button>
+    <button class="btn" data-toggle-modal='#modal'>Open Modal</button>
+
+    {% include 'components/modal-video.twig' with {
+      id: 'video-modal',
+      video_service: 'youtube',
+      video_id: 'KQX_HncvD2Y'
+    } only %}
+
+    {% include 'components/modal.twig' with {
+      id: 'modal',
+      content: '<h1>Heading</h1> <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit tempus porttitor.</p>'
+    } only %}
+    
+  </div>
+
+  {# <h1>ADD SOME MODALS</h1> #}
+
+{% endblock %}
